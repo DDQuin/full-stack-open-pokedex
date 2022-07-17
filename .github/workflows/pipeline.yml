@@ -29,6 +29,6 @@ jobs:
         env:
           HAS_SKIP: ${{ contains(join(github.event.commits.*.message), '#skip') }}
         run: echo "$HAS_SKIP"
-      - name: run if no skip and is push
+      - name: run if no skip and is pushs
         run: echo "There is  noskip message and this is a push"
         if: ${{ !(contains(join(github.event.commits.*.message), '#skip')) && github.event_name == 'push' }}
