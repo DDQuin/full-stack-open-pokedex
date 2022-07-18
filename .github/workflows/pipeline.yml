@@ -52,7 +52,7 @@ jobs:
         if: failure()
         with:
           severity: error
-          details: build has broken.
+          details: build has broken. 
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
