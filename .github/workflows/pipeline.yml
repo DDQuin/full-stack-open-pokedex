@@ -40,6 +40,18 @@ jobs:
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
         if: ${{ !(contains(join(github.event.commits.*.message), '#skip')) && github.event_name == 'push' }}
+      - name: Test Info
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: info
+          details: New version of pokedex open deployed!.
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Warn
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+          severity: warn
+          details: build has broken.
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
